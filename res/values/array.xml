@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <string-array name="spnEntries">
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>制限なし</item>
+    </string-array>
+
+    <string-array name="spnEntries2">
+        <item>D</item>
+        <item>C</item>
+        <item>B</item>
+        <item>A</item>
+        <item>S</item>
+    </string-array>
+</resources>
