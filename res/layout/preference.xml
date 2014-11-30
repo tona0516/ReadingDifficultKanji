@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <CheckBoxPreference
-        android:key="enter_mode"
-        android:summary="自動で正解を確定しないようにする"
-        android:title="手動確定モード(仮)" />
-
-</PreferenceScreen>
