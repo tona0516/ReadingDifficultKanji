@@ -8,8 +8,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 
 public class StartDisplay extends Activity {
 
@@ -23,6 +28,10 @@ public class StartDisplay extends Activity {
 	private Editor editor;
 	private boolean extremeMode;
 	private boolean lunaticMode;
+
+	// Admob関連インスタンス
+	LinearLayout layoutStart;
+	AdView adView;
 
 	public static final int MENU_OPTION = Menu.FIRST;
 
@@ -40,6 +49,18 @@ public class StartDisplay extends Activity {
 			loadPrefernce();
 		}
 		initlayout();
+
+		adView = new AdView(this);
+		adView.setAdUnitId("ca-app-pub-4176998183155624/5888413997"); // 注1
+		adView.setAdSize(AdSize.SMART_BANNER);
+		
+		adView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+
+		layoutStart = (LinearLayout) findViewById(R.id.layout_start);
+		layoutStart.addView(adView);
+
+		AdRequest adRequest = new AdRequest.Builder().build();
+		adView.loadAd(adRequest);
 	}
 
 	@Override
@@ -105,12 +126,30 @@ public class StartDisplay extends Activity {
 				startActivity(new Intent(getApplicationContext(), RuleDisplay.class));
 			}
 		});
-		option = (Button)findViewById(R.id.option);
+		option = (Button) findViewById(R.id.option);
 		option.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				startActivityForResult(new Intent(getApplicationContext(), Preference.class),0);
+				startActivityForResult(new Intent(getApplicationContext(), Preference.class), 0);
 			}
 		});
+	}
+
+	@Override
+	public void onPause() {
+		adView.pause();
+		super.onPause();
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		adView.resume();
+	}
+
+	@Override
+	public void onDestroy() {
+		adView.destroy();
+		super.onDestroy();
 	}
 }
