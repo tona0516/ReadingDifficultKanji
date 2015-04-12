@@ -21,9 +21,14 @@ import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 
 public class EndDisplay extends Activity {
 
@@ -42,12 +47,25 @@ public class EndDisplay extends Activity {
 
 	private static final String DICTIONARY_URL = "http://kotobank.jp/word/REPLACE?dic=daijisen";
 
+	// Admob関連インスタンス
+	LinearLayout layoutEnd;
+	AdView adView;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_end);
 		initActivity();
+
+		adView = new AdView(this);
+		adView.setAdUnitId("ca-app-pub-4176998183155624/5888413997"); // 注1
+		adView.setAdSize(AdSize.SMART_BANNER);
+		adView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+		layoutEnd = (LinearLayout) findViewById(R.id.layout_end);
+		layoutEnd.addView(adView);
+		AdRequest adRequest = new AdRequest.Builder().build();
+		adView.loadAd(adRequest);
 	}
 
 	private void initActivity() {

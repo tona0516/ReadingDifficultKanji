@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_end"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background2" >
+    android:background="@drawable/background2"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/end_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:text="終了"
+        android:gravity="center"
         android:textColor="@color/white"
         android:textSize="30sp" />
 
     <TextView
         android:id="@+id/score"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/end_text"
-        android:layout_centerHorizontal="true"
+        android:gravity="center"
         android:text="点数"
         android:textColor="@color/white"
         android:textSize="20sp" />
@@ -27,8 +28,6 @@
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/score"
-        android:layout_centerHorizontal="true"
         android:textColor="@color/white"
         android:textSize="20sp" />
 
@@ -36,8 +35,6 @@
         android:id="@+id/restart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/time"
-        android:layout_centerHorizontal="true"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
@@ -49,8 +46,6 @@
         android:id="@+id/return_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/restart"
-        android:layout_centerHorizontal="true"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
@@ -63,8 +58,6 @@
         android:id="@+id/finish"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/return_title"
-        android:layout_centerHorizontal="true"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
@@ -79,4 +72,4 @@
         android:layout_below="@id/finish"
         android:layout_centerHorizontal="true" />
 
-</RelativeLayout>
+</LinearLayout>
