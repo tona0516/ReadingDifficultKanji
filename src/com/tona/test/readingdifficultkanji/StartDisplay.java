@@ -53,7 +53,7 @@ public class StartDisplay extends Activity {
 		adView = new AdView(this);
 		adView.setAdUnitId("ca-app-pub-4176998183155624/5888413997"); // 注1
 		adView.setAdSize(AdSize.SMART_BANNER);
-		
+
 		adView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
 
 		layoutStart = (LinearLayout) findViewById(R.id.layout_start);

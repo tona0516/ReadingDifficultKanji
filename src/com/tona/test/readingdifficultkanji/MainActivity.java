@@ -49,8 +49,12 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 
 public class MainActivity extends Activity implements TextWatcher {
 	private TextView questionText;
@@ -60,7 +64,7 @@ public class MainActivity extends Activity implements TextWatcher {
 	private TextView yomiganaText;
 	private TextView nowNumberText;
 	private Button dictionaryButton;
-	private Button feedbackButton;
+	//private Button feedbackButton;
 
 	private int questionIndex = -1;
 	private ArrayList<Question> questionList;
@@ -74,6 +78,10 @@ public class MainActivity extends Activity implements TextWatcher {
 	private int MAX_NUMBER;
 	private int questionLevel;
 	private long activityStartTime;
+
+	// Admob関連インスタンス
+	LinearLayout layoutMain;
+	AdView adView;
 
 	// private static final String dicFileName = "twoWordDic.txt";
 	private static final String ELEMENT_FILE = "element.txt";
@@ -97,6 +105,15 @@ public class MainActivity extends Activity implements TextWatcher {
 		mActivity = this;
 		initActivity();
 		initKanjiList();
+
+		adView = new AdView(this);
+		adView.setAdUnitId("ca-app-pub-4176998183155624/5888413997"); // 注1
+		adView.setAdSize(AdSize.SMART_BANNER);
+		adView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+		layoutMain = (LinearLayout) findViewById(R.id.layout_main);
+		layoutMain.addView(adView);
+		AdRequest adRequest = new AdRequest.Builder().build();
+		adView.loadAd(adRequest);
 	}
 
 	@Override
@@ -136,7 +153,7 @@ public class MainActivity extends Activity implements TextWatcher {
 		nowNumberText = (TextView) findViewById(R.id.now_number);
 		countDownText = (TextView) findViewById(R.id.count_down);
 		dictionaryButton = (Button) findViewById(R.id.dictionary);
-		feedbackButton = (Button)findViewById(R.id.feedback);
+		//feedbackButton = (Button)findViewById(R.id.feedback);
 
 
 		retireButton.setOnClickListener(new View.OnClickListener() {
@@ -156,12 +173,12 @@ public class MainActivity extends Activity implements TextWatcher {
 				}
 			}
 		});
-		feedbackButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Toast.makeText(getApplicationContext(), "フィードバックを送信しました(仮)", Toast.LENGTH_SHORT).show();
-			}
-		});
+//		feedbackButton.setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				Toast.makeText(getApplicationContext(), "フィードバックを送信しました(仮)", Toast.LENGTH_SHORT).show();
+//			}
+//		});
 
 		// 起動直後にソフトウェアキーボードを出す
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
@@ -350,8 +367,8 @@ public class MainActivity extends Activity implements TextWatcher {
 		});
 		dictionaryButton.setVisibility(View.VISIBLE);
 		dictionaryButton.startAnimation(alpha);
-		feedbackButton.setVisibility(View.VISIBLE);
-		feedbackButton.startAnimation(alpha);
+//		feedbackButton.setVisibility(View.VISIBLE);
+//		feedbackButton.startAnimation(alpha);
 	}
 
 	private void createExplanation() throws UnsupportedEncodingException {
